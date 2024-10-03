@@ -3,6 +3,7 @@
 using namespace std;
 
 class GeometricScaler;
+class GeometricSwapper;
 
 class Rectangle
 {
@@ -16,6 +17,7 @@ public:
     return (width * height);
   }
   void scale(GeometricScaler scalar);
+  void swap(GeometricSwapper swapper);
 };
 
 class GeometricScaler
@@ -30,6 +32,26 @@ public:
     this->factor = factor;
   }
 };
+
+class GeometricSwapper
+{
+private:
+  friend class Rectangle;
+  int height;
+
+public:
+  GeometricSwapper(int height)
+  {
+    this->height = height;
+  }
+};
+
+void Rectangle::swap(GeometricSwapper swapper)
+{
+  swapper.height = this->width;
+  this->width = this->height;
+  this->height = swapper.height;
+}
 
 void Rectangle::scale(GeometricScaler scalar)
 {

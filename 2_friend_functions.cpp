@@ -17,6 +17,7 @@ public:
   }
 
   friend Rectangle scale(Rectangle, int);
+  friend swap(Rectangle);
 };
 
 Rectangle scale(Rectangle rectangle, int factor)
@@ -24,6 +25,13 @@ Rectangle scale(Rectangle rectangle, int factor)
   int new_width = rectangle.width * factor;
   int new_height = rectangle.height * factor;
   return Rectangle(new_width, new_height);
+}
+
+Rectangle swap(Rectangle rectangle)
+{
+	int height = rectangle.height;
+	rectangle.height = rectangle.width;
+	rectangle.width = height;
 }
 
 int main()
